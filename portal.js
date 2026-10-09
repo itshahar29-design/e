@@ -4349,9 +4349,42 @@ async function downloadCurrentLessonZip() {
     }
 }
 
+// Welcome & About Modal Functions
+function openWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    const chk = document.getElementById('dont-show-again-chk');
+    if (chk && chk.checked) {
+        localStorage.setItem('frontend_hide_welcome', 'true');
+    }
+}
+
+// Close modal on Escape key or clicking outside
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeWelcomeModal();
+});
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('welcome-modal');
+    if (modal && e.target === modal) closeWelcomeModal();
+});
+
 // Init
 window.onload = () => {
     updateProgress();
     renderTree();
     loadLesson(0);
+
+    // Show welcome modal on load unless user checked don't show
+    if (!localStorage.getItem('frontend_hide_welcome')) {
+        setTimeout(openWelcomeModal, 400);
+    }
 };
