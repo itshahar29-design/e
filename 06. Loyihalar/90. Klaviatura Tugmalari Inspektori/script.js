@@ -1,0 +1,1 @@
+window.onkeydown=(e)=>{document.getElementById('kc-key').textContent=e.key;document.getElementById('kc-code').textContent=`code: ${e.code} | keyCode: ${e.keyCode}`;};

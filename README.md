@@ -3,7 +3,7 @@
 > *"Bilimsiz kishilarning ko'ngli xurofotga moyil bo'ladi."*  
 > — **Abu Rayhon Beruniy**
 
-O'zbek tilidagi eng mukammal, ochiq va interaktiv **Front-End Masterclass Platformasi** (88 ta dars va 10 ta to'liq real portfolio loyihalar).
+O'zbek tilidagi eng mukammal, ochiq va interaktiv **Front-End Masterclass Platformasi** (178 ta dars va 100 ta to'liq real portfolio loyihalar).
 
 Platforma o'qituvchilar va o'quvchilar uchun maxsus moslashtirilgan bo'lib, **1-bosishda brauzerdan ZIP formatda kodlarni yuklab olish**, **Jonli kod tahrirlagich (Live Playground)**, **Senior maslahatlari** va **Render.com ga 1-bosishda deploy qilish** imkoniyatiga ega.
 
@@ -11,13 +11,13 @@ Platforma o'qituvchilar va o'quvchilar uchun maxsus moslashtirilgan bo'lib, **1-
 
 ## 🌟 Asosiy Imkoniyatlar
 
-1. **Jami 88 ta Dars va Loyihalar**:
+1. **Jami 178 ta Dars va Loyihalar**:
    - 8 ta chuqurlashtirilgan HTML darsi
    - 10 ta CSS va animatsiyalar darsi
    - 30 ta JavaScript darsi
    - 26 ta Advanced JavaScript & Asinxron JS darsi
    - 4 ta zamonaviy React darsi
-   - **10 ta To'liq Real Portfolio Loyihalari**
+   - **100 ta To'liq Real Portfolio Loyihalari**
 2. **📦 1-Click ZIP Yuklab Olish**:
    - O'quvchi yoki o'qituvchi xohlagan dars yoki loyihani yuqori paneldagi `📥 ZIP Yuklab Olish` tugmasi orqali to'liq arxiv holatida kompyuteriga yuklab oladi.
 3. **⚡ 10X Chuqur Metodologiya**:
@@ -71,18 +71,14 @@ Platforma o'qituvchilar va o'quvchilar uchun maxsus moslashtirilgan bo'lib, **1-
 - `03. 2-dars/` — `useState` hooki va Dinamik State boshqaruvi
 - `04. 3-dars/` — `useEffect` hooki, API integratsiyasi va LifeCycle
 
-### 6. 🏆 [06. Loyihalar](./06.%20Loyihalar/) (10 ta Real Portfolio Loyihasi)
-O'quvchilar rezyumesiga qo'shishlari mumkin bo'lgan zamonaviy, to'liq ishlaydigan front-end loyihalar:
-1. **01. Shaxsiy Portfolio Sayti** — Zamonaviy dizayn, Dark/Light rejim, Loyihalar galereyasi va Aloqa formasi.
-2. **02. E-Commerce Do'kon** — TechStore katalogi, Mahsulotlarni savatga qo'shish, Savatcha paneli (Cart Drawer) va hisob-kitob.
-3. **03. Ob-havo Ilovasi** — Shaharlar bo'yicha ob-havo qidiruvi, Dinamik ob-havo kartalari va animatsiyalari.
-4. **04. Zamonaviy Kalkulyator** — Neumorphic uslubidagi qulay kalkulyator, klaviatura yordamida kiritish va xotira.
-5. **05. Viktorina Ilovasi** — Front-End Quiz dasturi, taymer, ball hisoblash tizimi va tahlil.
-6. **06. Kripto Kurslari Kuzatuvchisi** — Kriptovalyuta kurslari, dinamik trend indikatorlari va valyuta filtrlari.
-7. **07. Xavfsiz Parol Generatori** — Katta-kichik harflar, belgilar bilan kuchli parol yaratish va bir bosishda nusxalash.
-8. **08. Rang va Gradiyent Generatori** — Hex/RGB ranglar, chiroyli gradiyentlar yasash va CSS kodini nusxalash.
-9. **09. Raqamli Soat va Sekundomer** — Aniq vaqt, sana, oraliq vaqtlarni (Lap) saqlovchi professional sekundomer.
-10. **10. Musiqa Pleyeri UI** — Treklar ro'yxati, Play/Pause, Next/Prev boshqaruvi, ovoz va vaqt progress-bari.
+### 6. 🏆 [06. Loyihalar](./06.%20Loyihalar/) (100 ta Real Portfolio Loyihasi)
+O'quvchilar rezyumesiga qo'shishlari va 1-bosishda ZIP qilib yuklab olishlari mumkin bo'lgan 100 ta to'liq ishlaydigan front-end loyihalar:
+- **01 - 10**: Shaxsiy Portfolio, E-Commerce Do'kon, Ob-havo Ilovasi, Kalkulyator, Quiz App, Kripto Kuzatuvchi, Parol Generatori, Gradiyent Generatori, Raqamli Soat, Musiqa Pleyeri.
+- **11 - 30**: Pomodoro Taymeri, Kanban Doskasi, Sticky Notes, Rich Text Editor, QR Kod Generatori, Expense Tracker, BMI Hisoblagich, Kredit Kalkulyatori, Choychaqa Kalkulyatori, Birliklar Konverteri, Yosh Hisoblagich, Matn Tahlili, Valyuta Konverteri, Odatlar Kuzatuvchisi, CV Builder, Markdown Live, Readme Generator, Budilnik, Text-to-Speech, Speech-to-Text.
+- **31 - 50**: Tic-Tac-Toe, Memory Card Match, Tosh-Qaychi-Qog'oz, Snake Game, Flappy Bird, Whack-a-Mole, Typing Speed Test, Hangman, Simon Says, 2048, Ping-Pong, Fortune Wheel, Magic 8 Ball, RNG, Coin Flip, Dice Roller, Drum Kit, Virtual Piano, Color Guess, Math Blitz.
+- **51 - 70**: Box-Shadow Generatori, Border-Radius Generatori, Glassmorphism, Neumorphism, Clip-Path Maker, Image Filter Studio, Drawing Canvas, Image Resizer, Palette Extractor, SVG Icons, CSS Buttons, FAQ Accordion, Carousel Slider, Modal Popups, Multi-Step Form, Star Rating, Spinners & Loaders, Pricing Table, Password Strength, File Uploader.
+- **71 - 85**: IT Akademiya Landing, Restoran & Menyu, Coffee House, IronGym Fitness, SilkRoad Travel, Freelancer Portfolio, CyberShield, CloudFlow SaaS, BarberShop, AutoRent, Shifo Med, Elite House, E-Book Library, Kids Education, Tech Summit.
+- **86 - 100**: JSON Formatter & Validator, Regex Tester, Base64 Encoder/Decoder, HTML Stripper, Keycode Inspector, Flexbox Playground, CSS Grid Builder, URL Parser, Lorem Ipsum Generator, Image Color Inverter, Chat Messenger UI, Toast Notifications, Bookmark Manager, Storage Inspector, Front-End Cheat Sheet & Snippet Library.
 
 ---
 

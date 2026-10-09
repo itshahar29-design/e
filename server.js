@@ -92,7 +92,7 @@ server.listen(PORT, () => {
   console.log(`=======================================================`);
   console.log(`🚀 FRONT-END 10X PORTAL SERVER ISHGATUSHIRILDI!`);
   console.log(`🌐 Manzil: http://localhost:${PORT}`);
-  console.log(`📚 Jami Darslar va Loyihalar: 88 ta`);
+  console.log(`📚 Jami Darslar va Loyihalar: 178 ta (100 ta Real Loyiha)`);
   console.log(`🛠️ Render.com porti: ${PORT}`);
   console.log(`=======================================================`);
 });
