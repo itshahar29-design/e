@@ -97,20 +97,19 @@ Yoki shunchaki `index.html` faylini ikki marta bosib brauzerda ochishingiz ham m
 
 ## 🌐 Render.com ga Joylash (1-Click Deployment)
 
-Saytni bepul va ommaviy internetga joylash juda oson:
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/itshahar29-design/e)
 
-1. **GitHub ga yuklash**:
-   ```bash
-   git add .
-   git commit -m "feat: frontend masterclass portal with 10 real projects"
-   git remote add origin https://github.com/USERNAME/REPO_NAME.git
-   git branch -M main
-   git push -u origin main
-   ```
-2. **Render.com ga kirish**:
-   - [render.com](https://render.com) ga kiring va GitHub hisobingiz bilan tizimga kiring.
-   - **"New +"** tugmasini bosing va **"Web Service"** ni tanlang.
-   - O'zingizning GitHub dagi ushbu omboringizni (repository) tanlang.
+**1-BOSISHDA AVTO-DEPLOY QILISH**:
+Yuqoridagi **"Deploy to Render"** tugmasini yoki quyidagi havolani bosing:
+👉 **[https://render.com/deploy?repo=https://github.com/itshahar29-design/e](https://render.com/deploy?repo=https://github.com/itshahar29-design/e)**
+
+Render.com avtomatik ravishda `render.yaml` sozlamasini o'qib, saytni 1 daqiqada bepul serverda ishga tushiradi!
+
+Yoki qo'lda joylash tartibi:
+1. [render.com](https://render.com) ga kiring va GitHub hisobingiz orqali kiring.
+2. **"New +"** tugmasini bosing va **"Web Service"** ni tanlang.
+3. **`itshahar29-design/e`** omborini tanlang.
+4. Render avtomatik `render.yaml` va `server.js` ni aniqlaydi. **"Create Web Service"** tugmasini bosing!
    - Sozlamalari:
      - **Name**: `frontend-masterclass`
      - **Runtime**: `Node`
