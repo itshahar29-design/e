@@ -518,6 +518,183 @@
             cursor: pointer;
         }
         .welcome-checkbox-wrap input { accent-color: #0284c7; cursor: pointer; }
+
+        /* 2-WAY SECTION SWITCHER IN SIDEBAR & NAVBAR */
+        .sidebar-section-switcher {
+            display: flex;
+            background: #090d16;
+            padding: 8px 12px;
+            gap: 6px;
+            border-bottom: 1px solid #334155;
+        }
+        .section-switch-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: #94a3b8;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .section-switch-btn:hover { background: #334155; color: #fff; }
+        .section-switch-btn.active#sec-lessons-btn {
+            background: linear-gradient(135deg, #0284c7, #0ea5e9);
+            color: #fff;
+            border-color: #38bdf8;
+            box-shadow: 0 2px 10px rgba(14, 165, 233, 0.4);
+        }
+        .section-switch-btn.active#sec-projects-btn {
+            background: linear-gradient(135deg, #be185d, #ec4899);
+            color: #fff;
+            border-color: #f472b6;
+            box-shadow: 0 2px 10px rgba(236, 72, 153, 0.4);
+        }
+
+        .section-top-switcher {
+            display: flex;
+            gap: 8px;
+            margin: 0 15px;
+        }
+        @media (max-width: 900px) {
+            .section-top-switcher { display: none; }
+        }
+        .top-switch-btn {
+            padding: 7px 16px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: #94a3b8;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-switch-btn:hover { background: #334155; color: #fff; }
+        .top-switch-btn.active#top-sec-lessons-btn {
+            background: #0284c7;
+            color: #fff;
+            border-color: #38bdf8;
+        }
+        .top-switch-btn.active#top-sec-projects-btn {
+            background: #ec4899;
+            color: #fff;
+            border-color: #f472b6;
+        }
+
+        /* WELCOME SPLIT DOORS */
+        .welcome-split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin: 22px 0;
+        }
+        @media (max-width: 720px) {
+            .welcome-split-grid { grid-template-columns: 1fr; }
+        }
+        .welcome-door {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 2px solid #334155;
+            border-radius: 18px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        .welcome-door:hover {
+            transform: translateY(-5px);
+        }
+        .welcome-door.door-lessons:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.25);
+        }
+        .welcome-door.door-projects:hover {
+            border-color: #ec4899;
+            box-shadow: 0 15px 35px rgba(236, 72, 153, 0.25);
+        }
+
+        .door-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .door-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+        .door-icon-blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .door-icon-pink { background: rgba(236, 72, 153, 0.15); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3); }
+
+        .door-header h2 { font-size: 20px; font-weight: 800; color: #fff; }
+        .door-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .door-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .door-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 22px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+        .door-points li { display: flex; align-items: center; gap: 8px; }
+        .door-points li i { font-size: 12px; }
+
+        .door-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .door-btn-blue {
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+        .door-btn-blue:hover { background: linear-gradient(135deg, #0369a1, #0284c7); }
+
+        .door-btn-pink {
+            background: linear-gradient(135deg, #be185d, #ec4899);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+        .door-btn-pink:hover { background: linear-gradient(135deg, #9d174d, #db2777); }
     </style>
 </head>
 <body>
@@ -534,23 +711,42 @@
             </div>
         </div>
 
+        <!-- 2-WAY SECTION SWITCHER (DARSLAR / REAL LOYIHALAR) -->
+        <div class="sidebar-section-switcher">
+            <button class="section-switch-btn active" id="sec-lessons-btn" onclick="setPortalMode('lessons')">
+                <i class="fa-solid fa-graduation-cap"></i> 📚 DARSLAR (78)
+            </button>
+            <button class="section-switch-btn" id="sec-projects-btn" onclick="setPortalMode('projects')">
+                <i class="fa-solid fa-rocket"></i> 🚀 LOYIHALAR (100)
+            </button>
+        </div>
+
         <!-- SEARCH -->
         <div class="search-box">
             <div class="search-input-wrapper">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="search-input" class="search-input" placeholder="Darslarni qidirish (loop, modal, flex, react)...">
+                <input type="text" id="search-input" class="search-input" placeholder="Qidirish (nomi, kalit so'z bo'yicha)...">
             </div>
         </div>
 
-        <!-- MODULE QUICK PILLS -->
-        <div class="module-pills" id="module-pills">
-            <button class="pill-btn active" onclick="filterByModule('all')">Hammasi (178)</button>
+        <!-- LESSONS PILLS -->
+        <div class="module-pills" id="lessons-pills">
+            <button class="pill-btn active" onclick="filterByModule('all')">Hammasi (78)</button>
             <button class="pill-btn" onclick="filterByModule('01. HTML')">HTML (8)</button>
             <button class="pill-btn" onclick="filterByModule('02. CSS')">CSS (10)</button>
             <button class="pill-btn" onclick="filterByModule('03. JS')">JS (30)</button>
             <button class="pill-btn" onclick="filterByModule('04. Advanced JavaScript')">Adv JS (26)</button>
             <button class="pill-btn" onclick="filterByModule('05. React')">React (4)</button>
-            <button class="pill-btn" onclick="filterByModule('06. Loyihalar')"><i class="fa-solid fa-rocket"></i> Loyihalar (100)</button>
+        </div>
+
+        <!-- PROJECTS PILLS -->
+        <div class="module-pills" id="projects-pills" style="display: none;">
+            <button class="pill-btn active" onclick="filterProjectsCategory('all')">Barcha Loyihalar (100)</button>
+            <button class="pill-btn" onclick="filterProjectsCategory('basic')">01-20 Ilovalar</button>
+            <button class="pill-btn" onclick="filterProjectsCategory('games')">21-40 O'yinlar</button>
+            <button class="pill-btn" onclick="filterProjectsCategory('ui')">41-60 CSS & UI</button>
+            <button class="pill-btn" onclick="filterProjectsCategory('sites')">61-80 Veb-Saytlar</button>
+            <button class="pill-btn" onclick="filterProjectsCategory('tools')">81-100 Asboblar</button>
         </div>
 
         <!-- PROGRESS -->
@@ -585,6 +781,16 @@
                 <p id="lesson-module"><i class="fa-solid fa-graduation-cap"></i> Front-End Platformasiga xush kelibsiz!</p>
             </div>
 
+            <!-- TOP 2-WAY SECTION SWITCHER -->
+            <div class="section-top-switcher">
+                <button class="top-switch-btn active" id="top-sec-lessons-btn" onclick="setPortalMode('lessons')">
+                    <i class="fa-solid fa-graduation-cap"></i> 📚 Darslar (78)
+                </button>
+                <button class="top-switch-btn" id="top-sec-projects-btn" onclick="setPortalMode('projects')">
+                    <i class="fa-solid fa-rocket"></i> 🚀 Real Loyihalar (100)
+                </button>
+            </div>
+
             <div class="actions-bar">
                 <button class="btn" onclick="openWelcomeModal()" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="Sayt va Muallif haqida to'liq ma'lumot olish"><i class="fa-solid fa-circle-info"></i> Sayt & Muallif</button>
                 <button class="btn success" id="download-zip-btn" onclick="downloadCurrentLessonZip()" title="Ushbu loyiha yoki dars kodlarini ZIP holatida yuklab olish"><i class="fa-solid fa-file-zipper"></i> ZIP Yuklab Olish</button>
@@ -617,17 +823,17 @@
         </div>
     </main>
 
-    <!-- WELCOME / ABOUT MODAL -->
+    <!-- WELCOME / ABOUT MODAL (SPLIT INTO 2 MAIN DOORS) -->
     <div id="welcome-modal" class="welcome-overlay">
         <div class="welcome-card">
             <button class="welcome-close-btn" onclick="closeWelcomeModal()" title="Yopish">&times;</button>
             
             <div class="welcome-badge">
-                <i class="fa-solid fa-graduation-cap"></i> O'ZBEKISTONNING 1-RAQAMLI OCHIQ FRONT-END TA'LIM PLATFORMASI
+                <i class="fa-solid fa-graduation-cap"></i> O'ZBEKISTONNING 1-RAQAMLI OCHIQ FRONT-END PLATFORMASI
             </div>
             
             <h1 class="welcome-title">Front-End 10X Masterclass Portali</h1>
-            <p class="welcome-subtitle">O'qituvchilar, talabalar va bo'lajak dasturchilar uchun 178 ta chuqur dars va to'liq real portfolio loyihalari tizimi</p>
+            <p class="welcome-subtitle">Platforma ikkita ulkan bo'limga ajratilgan: <strong>78 ta Chuqurlashtirilgan Darslar</strong> hamda <strong>100 ta To'liq Real Portfolio Loyihalari</strong>. O'zingizga kerakli bo'limni tanlang!</p>
 
             <!-- AUTHOR SECTION -->
             <div class="author-box">
@@ -638,7 +844,7 @@
                     <div class="author-tag">SAYT EGASI VA MENTOR</div>
                     <h3>Fayozbek Hamidov</h3>
                     <p class="author-role"><i class="fa-solid fa-laptop-code"></i> Senior Front-End Engineer & Texnologik Mentor</p>
-                    <p class="author-bio">"Ushbu platforma O'zbekiston yoshlari va dasturchilari zamonaviy frontend texnologiyalarini quruq nazariyasiz, 100% amaliyot, toza kod (clean code) va haqiqiy portfolio loyihalar orqali chuqur o'rganishlari uchun maxsus yaratildi. Barcha dars va loyihalar to'liq bepul, ochiq kodli va 1-bosishda ZIP qilib yuklab olish imkoniyatiga ega!"</p>
+                    <p class="author-bio">"Ushbu platforma O'zbekiston yoshlari zamonaviy frontend texnologiyalarini quruq nazariyasiz, 100% amaliyot, toza kod va mustaqil loyihalar orqali o'rganishlari uchun yaratildi. Darslar va 100 ta real portfolio loyihalari to'liq bepul va ochiq!"</p>
                     <div class="author-links">
                         <a href="https://t.me" target="_blank" class="social-link"><i class="fa-brands fa-telegram"></i> Telegram Kanal</a>
                         <a href="https://github.com" target="_blank" class="social-link"><i class="fa-brands fa-github"></i> GitHub Profil</a>
@@ -647,46 +853,56 @@
                 </div>
             </div>
 
-            <!-- FEATURES GRID -->
-            <div class="features-grid">
-                <div class="feat-card">
-                    <div class="feat-icon" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);"><i class="fa-solid fa-book-bookmark"></i></div>
-                    <div>
-                        <h4>78 ta Chuqur Dars</h4>
-                        <p>HTML, CSS, JS, Advanced JS va React (Senior maslahatlari va xotira sxemalari bilan)</p>
+            <!-- 2 MASSIVE SPLIT ENTRANCE DOORS -->
+            <div class="welcome-split-grid">
+                <!-- DOOR 1: DARSLAR -->
+                <div class="welcome-door door-lessons" onclick="chooseSectionAndEnter('lessons')">
+                    <div class="door-header">
+                        <div class="door-icon door-icon-blue"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <div>
+                            <span class="door-tag" style="color: #38bdf8;">1-BO'LIM &bull; O'QUV DASTURI</span>
+                            <h2>📚 DARSLAR (78 ta)</h2>
+                        </div>
                     </div>
+                    <p class="door-desc">HTML, CSS, JavaScript, Advanced JS va React bo'yicha noldan professional darajagacha 10X Senior darsliklar to'plami.</p>
+                    <ul class="door-points">
+                        <li><i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> 78 ta to'liq interaktiv dars</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> Senior dasturchi Clean Code maslahatlari</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> Xotirada nima bo'ladi (Under the Hood)</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> Interaktiv Quizlar va Cheat Sheetlar</li>
+                    </ul>
+                    <button class="door-btn door-btn-blue">
+                        <span>Darslarni Boshlash (78 ta)</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
-                <div class="feat-card">
-                    <div class="feat-icon" style="color: #ec4899; background: rgba(236, 72, 153, 0.1);"><i class="fa-solid fa-rocket"></i></div>
-                    <div>
-                        <h4>100 ta Real Portfolio Loyihasi</h4>
-                        <p>Portfolio uchun to'liq ishchi ilovalar, o'yinlar, generatorlar va veb-saytlar</p>
+
+                <!-- DOOR 2: REAL LOYIHALAR -->
+                <div class="welcome-door door-projects" onclick="chooseSectionAndEnter('projects')">
+                    <div class="door-header">
+                        <div class="door-icon door-icon-pink"><i class="fa-solid fa-rocket"></i></div>
+                        <div>
+                            <span class="door-tag" style="color: #ec4899;">2-BO'LIM &bull; PORTFOLIO HUB</span>
+                            <h2>🚀 REAL LOYIHALAR (100 ta)</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i class="fa-solid fa-file-zipper"></i></div>
-                    <div>
-                        <h4>1-Click ZIP Yuklab Olish</h4>
-                        <p>Har bir dars va loyiha kodlarini brauzerdan bir zumda to'liq arxiv holida yuklab oling</p>
-                    </div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);"><i class="fa-solid fa-laptop-code"></i></div>
-                    <div>
-                        <h4>Jonli Kod Muharriri (Sandbox)</h4>
-                        <p>Kodni to'g'ridan-to'g'ri brauzerda tahrirlab, natijasini jonli sinab ko'rish imkoniyati</p>
-                    </div>
+                    <p class="door-desc">Rezyume va portfolio uchun 100 ta tayyor, to'liq ishlaydigan mustaqil veb-loyihalar, o'yinlar va ilovalar to'plami.</p>
+                    <ul class="door-points">
+                        <li><i class="fa-solid fa-circle-check" style="color: #ec4899;"></i> 100 ta real amaliy frontend loyiha</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #ec4899;"></i> 1-bosishda brauzerdan ZIP yuklab olish</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #ec4899;"></i> O'yinlar, kalkulyatorlar, landing pagelar</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #ec4899;"></i> Jonli tahrirlagich va toza manba kodlari</li>
+                    </ul>
+                    <button class="door-btn door-btn-pink">
+                        <span>Real Loyihalarni Ko'rish (100 ta)</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
 
-            <!-- BIG HERO CALL TO ACTION BUTTON -->
-            <div class="welcome-action-box">
-                <button class="welcome-cta-btn" onclick="closeWelcomeModal()">
-                    <i class="fa-solid fa-rocket"></i> Darslar va Loyihalarni Ko'rish (178 ta) <i class="fa-solid fa-arrow-right"></i>
-                </button>
+            <!-- FOOTER TOGGLE -->
+            <div class="welcome-action-box" style="border-top: none; padding-top: 10px;">
                 <div class="welcome-checkbox-wrap">
                     <label>
-                        <input type="checkbox" id="dont-show-again-chk"> Keyingi safar avtomatik ochilmasin (doimiy menyudan ochish mumkin)
+                        <input type="checkbox" id="dont-show-again-chk"> Keyingi safar avtomatik ochilmasin (doimiy yuqori menyudan ochish mumkin)
                     </label>
                 </div>
             </div>

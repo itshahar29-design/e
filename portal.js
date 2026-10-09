@@ -3960,7 +3960,9 @@ const ALL_LESSONS = [
 
 let currentIndex = 0;
 let currentTab = 'preview'; // 'preview' | 'code' | 'playground'
+let currentPortalMode = 'lessons'; // 'lessons' | 'projects'
 let currentModuleFilter = 'all';
+let currentProjectCategory = 'all';
 
 const lessonsTreeEl = document.getElementById('lessons-tree');
 const lessonTitleEl = document.getElementById('lesson-title');
@@ -4003,10 +4005,21 @@ function saveCompletedLesson(index, isDone) {
 }
 
 function updateProgress() {
+    if (!progressFill || !progressPercent) return;
     const completed = getCompletedLessons();
-    const pct = Math.round((completed.length / ALL_LESSONS.length) * 100);
-    progressFill.style.width = pct + '%';
-    progressPercent.textContent = pct + '% (' + completed.length + '/' + ALL_LESSONS.length + ')';
+    if (currentPortalMode === 'lessons') {
+        const completedLessons = completed.filter(i => i < 78).length;
+        const totalLessons = 78;
+        const pct = Math.round((completedLessons / totalLessons) * 100);
+        progressFill.style.width = pct + '%';
+        progressPercent.textContent = pct + '% (' + completedLessons + '/' + totalLessons + ' dars)';
+    } else {
+        const completedProjects = completed.filter(i => i >= 78 && i < ALL_LESSONS.length).length;
+        const totalProjects = Math.max(1, ALL_LESSONS.length - 78);
+        const pct = Math.round((completedProjects / totalProjects) * 100);
+        progressFill.style.width = pct + '%';
+        progressPercent.textContent = pct + '% (' + completedProjects + '/' + totalProjects + ' loyiha)';
+    }
 }
 
 function updateMarkDoneBtn() {
@@ -4026,26 +4039,126 @@ function toggleCurrentCompleted() {
     const completed = getCompletedLessons();
     const isDone = completed.includes(currentIndex);
     saveCompletedLesson(currentIndex, !isDone);
-    renderTree(searchInput.value);
+    renderTree(searchInput ? searchInput.value.trim() : '');
 }
 
-// Module Filtering via Pills
+// 2-Way Section Mode Switcher (Darslar vs Real Loyihalar)
+function setPortalMode(mode, switchLesson = true) {
+    currentPortalMode = mode;
+
+    // Sidebar buttons state
+    const secLessonsBtn = document.getElementById('sec-lessons-btn');
+    const secProjectsBtn = document.getElementById('sec-projects-btn');
+    if (secLessonsBtn) secLessonsBtn.classList.toggle('active', mode === 'lessons');
+    if (secProjectsBtn) secProjectsBtn.classList.toggle('active', mode === 'projects');
+
+    // Top navbar buttons state
+    const topSecLessonsBtn = document.getElementById('top-sec-lessons-btn');
+    const topSecProjectsBtn = document.getElementById('top-sec-projects-btn');
+    if (topSecLessonsBtn) topSecLessonsBtn.classList.toggle('active', mode === 'lessons');
+    if (topSecProjectsBtn) topSecProjectsBtn.classList.toggle('active', mode === 'projects');
+
+    // Toggle Pills container
+    const lessonsPills = document.getElementById('lessons-pills');
+    const projectsPills = document.getElementById('projects-pills');
+    if (lessonsPills) lessonsPills.style.display = mode === 'lessons' ? 'flex' : 'none';
+    if (projectsPills) projectsPills.style.display = mode === 'projects' ? 'flex' : 'none';
+
+    // Reset filters
+    if (mode === 'lessons') {
+        currentModuleFilter = 'all';
+        if (lessonsPills) {
+            lessonsPills.querySelectorAll('.pill-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === 0);
+            });
+        }
+        if (switchLesson && currentIndex >= 78) {
+            loadLesson(0);
+        }
+    } else {
+        currentProjectCategory = 'all';
+        if (projectsPills) {
+            projectsPills.querySelectorAll('.pill-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === 0);
+            });
+        }
+        if (switchLesson && currentIndex < 78) {
+            loadLesson(78);
+        }
+    }
+
+    updateProgress();
+    renderTree(searchInput ? searchInput.value.trim() : '');
+}
+
+function chooseSectionAndEnter(mode) {
+    setPortalMode(mode, true);
+    closeWelcomeModal();
+}
+
+// Module Filtering for Lessons
 function filterByModule(mod) {
     currentModuleFilter = mod;
-    document.querySelectorAll('.pill-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('onclick')?.includes("'" + mod + "'"));
-    });
-    renderTree(searchInput.value);
+    const lessonsPills = document.getElementById('lessons-pills');
+    if (lessonsPills) {
+        lessonsPills.querySelectorAll('.pill-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('onclick')?.includes("'" + mod + "'"));
+        });
+    }
+    renderTree(searchInput ? searchInput.value.trim() : '');
 }
 
-// Build Sidebar
+// Category Filtering for 100 Projects
+function filterProjectsCategory(cat) {
+    currentProjectCategory = cat;
+    const projectsPills = document.getElementById('projects-pills');
+    if (projectsPills) {
+        projectsPills.querySelectorAll('.pill-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('onclick')?.includes("'" + cat + "'"));
+        });
+    }
+    renderTree(searchInput ? searchInput.value.trim() : '');
+}
+
+function matchProjectCategory(item, globalIdx) {
+    if (currentProjectCategory === 'all') return true;
+    const match = item.title.match(/^(\d+)/);
+    const num = match ? parseInt(match[1], 10) : (globalIdx - 78 + 1);
+    if (currentProjectCategory === 'basic') return num >= 1 && num <= 20;
+    if (currentProjectCategory === 'games') return num >= 21 && num <= 40;
+    if (currentProjectCategory === 'ui') return num >= 41 && num <= 60;
+    if (currentProjectCategory === 'sites') return num >= 61 && num <= 80;
+    if (currentProjectCategory === 'tools') return num >= 81 && num <= 100;
+    return true;
+}
+
+// Build Sidebar Tree with Section & Category Awareness
 function renderTree(filter = '') {
+    if (!lessonsTreeEl) return;
     lessonsTreeEl.innerHTML = '';
     const completed = getCompletedLessons();
     
-    // Group lessons by module
+    // Group lessons/projects
     const groups = {};
     ALL_LESSONS.forEach((l, idx) => {
+        const isProject = (idx >= 78 || l.module === '06. Loyihalar');
+        
+        // Strict section split
+        if (currentPortalMode === 'lessons' && isProject) return;
+        if (currentPortalMode === 'projects' && !isProject) return;
+
+        // Subcategory filter in projects mode
+        if (currentPortalMode === 'projects' && !matchProjectCategory(l, idx)) return;
+
+        // Module filter in lessons mode
+        if (currentPortalMode === 'lessons' && currentModuleFilter !== 'all' && l.module !== currentModuleFilter) return;
+
+        // Search filter
+        const matchesSearch = !filter || 
+            l.title.toLowerCase().includes(filter.toLowerCase()) || 
+            l.module.toLowerCase().includes(filter.toLowerCase());
+        if (!matchesSearch) return;
+
         if (!groups[l.module]) {
             groups[l.module] = {
                 name: l.moduleName,
@@ -4054,21 +4167,23 @@ function renderTree(filter = '') {
                 items: []
             };
         }
-        
-        // Filter checks
-        const matchesModule = currentModuleFilter === 'all' || l.module === currentModuleFilter;
-        const matchesSearch = !filter || l.title.toLowerCase().includes(filter.toLowerCase()) || l.module.toLowerCase().includes(filter.toLowerCase());
-        
-        if (matchesModule && matchesSearch) {
-            groups[l.module].items.push({ ...l, globalIndex: idx });
-        }
+        groups[l.module].items.push({ ...l, globalIndex: idx });
     });
 
-    for (const [modKey, grp] of Object.entries(groups)) {
+    const groupKeys = Object.keys(groups);
+    for (const modKey of groupKeys) {
+        const grp = groups[modKey];
         if (grp.items.length === 0) continue;
 
         const groupDiv = document.createElement('div');
         groupDiv.className = 'module-group';
+
+        const shouldBeOpen = Boolean(
+            filter || 
+            currentModuleFilter !== 'all' || 
+            currentPortalMode === 'projects' || 
+            grp.items.some(it => it.globalIndex === currentIndex)
+        );
 
         const header = document.createElement('div');
         header.className = 'module-header';
@@ -4079,12 +4194,12 @@ function renderTree(filter = '') {
             </div>
             <div style="display:flex; align-items:center; gap:8px;">
                 <span class="module-badge">${grp.items.length}</span>
-                <i class="fa-solid fa-chevron-right chevron ${filter || currentModuleFilter !== 'all' ? 'open' : ''}"></i>
+                <i class="fa-solid fa-chevron-right chevron ${shouldBeOpen ? 'open' : ''}"></i>
             </div>
         `;
 
         const list = document.createElement('ul');
-        list.className = 'lesson-list ' + (filter || currentModuleFilter !== 'all' ? 'open' : '');
+        list.className = 'lesson-list ' + (shouldBeOpen ? 'open' : '');
 
         header.onclick = () => {
             const isOpen = list.classList.toggle('open');
@@ -4123,29 +4238,40 @@ function renderTree(filter = '') {
     }
 }
 
-// Load Lesson
+// Load Lesson or Project
 async function loadLesson(index) {
     if (index < 0 || index >= ALL_LESSONS.length) return;
     currentIndex = index;
     const lesson = ALL_LESSONS[index];
 
-    lessonTitleEl.textContent = lesson.title;
-    lessonModuleEl.innerHTML = `<i class="${lesson.moduleIcon}"></i> ${lesson.moduleName}`;
+    // Auto synchronize portal mode if loaded by index
+    const shouldBeMode = index >= 78 ? 'projects' : 'lessons';
+    if (currentPortalMode !== shouldBeMode) {
+        setPortalMode(shouldBeMode, false);
+    }
+
+    if (lessonTitleEl) lessonTitleEl.textContent = lesson.title;
+    if (lessonModuleEl) lessonModuleEl.innerHTML = `<i class="${lesson.moduleIcon}"></i> ${lesson.moduleName}`;
 
     updateMarkDoneBtn();
 
     // highlight selected in tree
-    renderTree(searchInput.value);
+    renderTree(searchInput ? searchInput.value.trim() : '');
 
     // load iframe
-    previewFrame.src = lesson.folderPath;
+    if (previewFrame) previewFrame.src = lesson.folderPath;
 
     // load code view & playground
     await loadCodeView(lesson);
 
-    // Navigation buttons state
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === ALL_LESSONS.length - 1;
+    // Navigation buttons state within current mode
+    if (currentPortalMode === 'lessons') {
+        if (prevBtn) prevBtn.disabled = index <= 0;
+        if (nextBtn) nextBtn.disabled = index >= 77;
+    } else {
+        if (prevBtn) prevBtn.disabled = index <= 78;
+        if (nextBtn) nextBtn.disabled = index >= ALL_LESSONS.length - 1;
+    }
 
     // auto open parent module
     const activeItem = document.querySelector('.lesson-item.active');
@@ -4247,12 +4373,20 @@ openNewTabBtn.onclick = () => {
     }
 };
 
-// Navigation
+// Navigation within current section mode
 prevBtn.onclick = () => {
-    if (currentIndex > 0) loadLesson(currentIndex - 1);
+    if (currentPortalMode === 'lessons') {
+        if (currentIndex > 0) loadLesson(currentIndex - 1);
+    } else {
+        if (currentIndex > 78) loadLesson(currentIndex - 1);
+    }
 };
 nextBtn.onclick = () => {
-    if (currentIndex < ALL_LESSONS.length - 1) loadLesson(currentIndex + 1);
+    if (currentPortalMode === 'lessons') {
+        if (currentIndex < 77) loadLesson(currentIndex + 1);
+    } else {
+        if (currentIndex < ALL_LESSONS.length - 1) loadLesson(currentIndex + 1);
+    }
 };
 
 // Keyboard shortcuts (ArrowLeft, ArrowRight)
