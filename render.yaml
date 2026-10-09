@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: frontend-masterclass-portal
+    env: node
+    plan: free
+    buildCommand: echo "Loyihada build jarayoni talab qilinmaydi, server tayyor."
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production

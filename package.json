@@ -1,0 +1,21 @@
+{
+  "name": "maxfiy-frontend-masterclass",
+  "version": "1.0.0",
+  "description": "Front-End Masterclass Darslari va 10x Real Loyihalar Portali",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "frontend",
+    "html",
+    "css",
+    "javascript",
+    "react",
+    "portfolio",
+    "uzbek",
+    "education"
+  ],
+  "author": "Fayozbek Hamidov",
+  "license": "MIT"
+}
